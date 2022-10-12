@@ -24,7 +24,6 @@ if (!empty($_GET['login']) && !empty($_GET['password'])){
         $id = $stmt['ID'];
 
         $token = md5(time());
-
         $expiration = time() + 48*60*60;
         $result .= sprintf('{"id":%d, "token":"%s", "expired":%d}', $id, $token, $expiration);
         $result .= '}';

@@ -14,11 +14,11 @@ catch (PDOException $e){
 
 $result  = '{"response":[';
     $stmt = $db->query("SELECT t.`ID`, t.`TITLE`, `DESCRIPTION`, `PRICE`, `COUNT`, `NAME` FROM `tovary` AS t JOIN 'categories` AS k ON t.ID_CAT=k.ID");
-hile ($row = $stmt->fetch()){
-    $result .= '{';
-    $result .= '"id":'.$row['ID'].', "title":"'.$row['TITLE'].'","desc":"'.$row['DESCRIPTION'].'",'.$row['PRICE'].',"count":'.$row['COUNT'].',"kat":"'.$row['NAME'].'"';
-    $result .= '}';
-}
+    while ($row = $stmt->fetch()){
+        $result .= '{';
+        $result .= '"id":'.$row['ID'].', "title":"'.$row['TITLE'].'","desc":"'.$row['DESCRIPTION'].'",'.$row['PRICE'].',"count":'.$row['COUNT'].',"kat":"'.$row['NAME'].'"';
+        $result .= '}';
+    }
 $result = rtrim($result, ",");
 $result .= ']}';
 echo $result;   

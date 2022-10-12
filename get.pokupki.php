@@ -20,7 +20,7 @@ if (isset($_GET['token'])){
     if (isset($stmt['ID'])) {
         $id_user = $stmt['ID'];
         $result = '{"pokupki":[';
-        $sql = sprintf(' = %d', $id_user);
+        $sql = sprintf('SELECT t.id, t.title, t.description, t.price, k.count, cat.title AS c_title FROM cart AS k JOIN products AS t ON k.id_product = t.id JOIN categories AS cat ON t.id_cat = cat.id WHERE id_user = %d', $id_user);
         $stmt = $db->query($sql);
         while ($row = $stmt->fetch()){
             $result .= '{';
